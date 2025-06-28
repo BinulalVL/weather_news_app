@@ -27,7 +27,7 @@ It is designed to display current weather and filtered news articles using GetX 
 ## 🔧 Setup Instructions
 
 1. Clone the repository:
-   git clone https://github.com/your-username/weather_news_app.git
+   git clone https://github.com/BinulalVL/weather_news_app.git
    cd weather_news_app
 2. Get dependencies:
 3. Run the app:
