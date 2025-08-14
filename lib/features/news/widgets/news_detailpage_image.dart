@@ -11,7 +11,8 @@ class NewsDetailpageImage extends StatelessWidget {
     return  Container(
       color:Colors.black ,
       height: height/1.6,
-      child: SizedBox.expand(child: ShaderMask(
+      child: SizedBox.expand(child:
+      ShaderMask(
           shaderCallback: (Rect bounds) {
             return LinearGradient(
               begin: Alignment.topCenter,
@@ -23,7 +24,36 @@ class NewsDetailpageImage extends StatelessWidget {
             ).createShader(bounds);
           },
           blendMode: BlendMode.dstIn,
-          child: Image.asset('$imgUrl',fit:BoxFit.cover,)),),
+          child: Image.network(
+            imgUrl,
+            width: double.infinity,
+            height: 200,
+            fit: BoxFit.cover,
+            errorBuilder: (context, error, stackTrace) {
+              return Container(
+                width: double.infinity,
+                height: 200,
+                color: Colors.grey[300],
+                child: Icon(Icons.image_not_supported, size: 50),
+              );
+            },
+            loadingBuilder: (context, child, loadingProgress) {
+              if (loadingProgress == null) return child;
+              return Container(
+                width: double.infinity,
+                height: 200,
+                color: Colors.grey[300],
+                child: Center(
+                  child: CircularProgressIndicator(
+                    value: loadingProgress.expectedTotalBytes != null
+                        ? loadingProgress.cumulativeBytesLoaded /
+                        loadingProgress.expectedTotalBytes!
+                        : null,
+                  ),
+                ),
+              );
+            },
+          ),),),
     );
   }
 }

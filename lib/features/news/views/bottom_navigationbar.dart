@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:weather_news_app/features/news/views/claud_ai_home.dart';
 import 'package:weather_news_app/features/news/views/saved_news_page.dart';
+import 'package:weather_news_app/features/news/views/testpage.dart';
 
 import '../../../core/theme/app_theme.dart';
 import '../../weather/views/weather_page.dart';

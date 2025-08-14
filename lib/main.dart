@@ -5,7 +5,9 @@ import 'package:weather_news_app/features/news/views/saved_news_page.dart';
 
 import 'features/news/bindings/news_bindings.dart';
 import 'features/news/views/bottom_navigationbar.dart';
+import 'features/news/views/claud_ai_home.dart';
 import 'features/news/views/news_detail_page.dart';
+import 'features/news/views/news_searching_page.dart';
 import 'features/news/widgets/saved_news_box.dart';
 
 void main(){
@@ -16,17 +18,23 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
+    return  GetMaterialApp(
+      initialRoute: '/',
+        getPages: [
+          GetPage(name: '/', page: () =>BottomNavigationbar() ,binding: InitialBindings()),
+          GetPage(name: '/searchPage', page: () =>NewsSearchingPage()),
+          GetPage(name: '/detailPage', page: () =>NewsDetailPage()),
+        ],
       debugShowCheckedModeBanner: false,
-      theme:
-      ThemeData(
-        primaryColor: Colors.white,
-        scaffoldBackgroundColor: Colors.white,
+      theme: ThemeData(
+        useMaterial3: true,
         appBarTheme: AppBarTheme(
           backgroundColor: Colors.white,
+          elevation: 0,
+          surfaceTintColor: Colors.transparent,
         ),
       ),
-      home: BottomNavigationbar(),
+      //home: BottomNavigationbar(),
       );
   }
 }

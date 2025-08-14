@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomepageSearchbar extends StatelessWidget {
@@ -9,27 +10,27 @@ class HomepageSearchbar extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 2),
       child: Container(
-        height: height/16,
+        height: height/17,
         padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
-          color: Colors.transparent,
+          color: Colors.grey.withValues(alpha: 0.1),
           borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: Colors.grey.shade300),
         ),
         child: Row(
           children: [
-            Icon(Icons.search, color: Colors.grey),
+            Icon(CupertinoIcons.search, color: Colors.grey.shade800),
             SizedBox(width: 8),
             Expanded(
               child: TextField(
                 decoration: InputDecoration(
-                  hintText: 'Search...',
+                  hintText: 'Search',
+                  hintStyle: TextStyle(color: Colors.grey.shade800,fontSize: 15),
                   border: InputBorder.none,
                 ),
               ),
             ),
             PopupMenuButton<String>(
-              icon: Icon(Icons.filter_list, color: Colors.grey[700]),
+              icon: Icon(CupertinoIcons.slider_horizontal_3, color: Colors.grey.shade800),
               onSelected: (value) {
                 // handle selected filter
                 print("Selected Filter: $value");

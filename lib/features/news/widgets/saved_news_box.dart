@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_news_app/features/news/views/news_detail_page.dart';
+import 'package:weather_news_app/features/news/views/news_searching_page.dart';
 
 class SavedNewsBox extends StatelessWidget {
   const SavedNewsBox({super.key});
@@ -10,7 +11,7 @@ class SavedNewsBox extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     return InkWell(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => NewsDetailPage(),));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => NewsSearchingPage(),));
       },
       child: Container(height: height/3.8,width: width/2.5,
         decoration: BoxDecoration(

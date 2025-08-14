@@ -7,13 +7,15 @@ import 'package:get/get_core/src/get_main.dart';
 import 'package:weather_news_app/features/news/widgets/homepage_gif.dart';
 import 'package:weather_news_app/features/news/widgets/homepage_trending_news_slider.dart';
 import 'package:weather_news_app/features/news/widgets/homepage_weather_details.dart';
+import 'package:weather_news_app/features/news/widgets/news_searching_page_ovelbuttons.dart';
 
 import '../controller/news_controller.dart';
 import '../models/news_model.dart';
 import '../widgets/homepage_article_card.dart';
+import '../widgets/homepage_searchbar.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class NewsSearchingPage extends StatelessWidget {
+  const NewsSearchingPage ({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,6 @@ class HomePage extends StatelessWidget {
 
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -68,93 +69,58 @@ class HomePage extends StatelessWidget {
               controller: newsController.scrollController,
               slivers: [
                 SliverAppBar(
-                  title: Row(
-                    children: [
-                      Text(
-                        'ATMOS',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 16,
-                        ),
-                      ),
-                      SizedBox(width: width/2,),
-                      InkWell(onTap: () {
-                        Get.toNamed('/searchPage');
-                      },child: SizedBox(height:35,width:35,child: CircleAvatar(child: Icon(CupertinoIcons.search,size: 20,color: Colors.black,),backgroundColor: Colors.grey.withValues(alpha: 0.1),))),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 10.0),
-                        child: SizedBox(height:35,width:35,child: CircleAvatar(child: Icon(CupertinoIcons.sun_max,size: 20,color: Colors.black,),backgroundColor: Colors.grey.withValues(alpha: 0.1),)),
-                      )
-                    ],
-                  ),
+                  // title:
+                  //     CircleAvatar(backgroundColor: Colors.grey.shade200,child: Icon(CupertinoIcons.back,color: Colors.black,),),
+
                   surfaceTintColor: Colors.transparent,
                   floating: false,
                   pinned: true,
-                 // expandedHeight: height / 3.3,
+                  expandedHeight: height / 4.2,
                   backgroundColor: Colors.white,
                   snap: false,
-                  // bottom: PreferredSize(
-                  //   preferredSize: Size.fromHeight(
-                  //     48,
-                  //   ), // Adjust to match your container's height
-                  //   child: HomepageSearchbar(),
-                  // ),
-
-                  // flexibleSpace: FlexibleSpaceBar(
-                  //
-                  //   background: Stack(
-                  //     children: [
-                  //       HomepageGif(gif: 'lib/core/gifs/rainy.gif'),
-                  //       Column(
-                  //         children: [
-                  //           SizedBox(height: height/28,),
-                  //           HomepageWeatherDetails(
-                  //             weather: 'Rainy',
-                  //             temperature: 22,
-                  //             wind: 12,
-                  //             chanceOfRain: 82,
-                  //             humidity: 27,
-                  //           ),
-                  //         ],
-                  //       ),
-                  //     ],
-                  //   ),
-                  // ),
-                ),
-                SliverToBoxAdapter(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 20.0),
-                        child: Text(
-                          'Breaking News',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20,
-                          ),
+                  bottom: PreferredSize(
+                    preferredSize: Size.fromHeight(
+                      height/4.2,
+                    ), // Adjust to match your container's height
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20.0),
+                          child: Text('Discover',style: TextStyle(fontSize: 28,fontWeight: FontWeight.bold),),
                         ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 8.0),
-                        child: HomepageTrendingNewsSlider(list:newsController.trendingarticles,),
-                      ),
-                    ],
-                  ),
-                ),
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 20.0,top: 20),
-                    child: Text(
-                      'Latest News',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20.0,bottom: 20),
+                          child: Text('News from all around the worlds',style: TextStyle(fontSize: 13,color: Colors.grey),),
+                        ),
+
+                    HomepageSearchbar(),
+                    SizedBox(height: height/50,),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10.0),
+                      child: Container(
+                        height: height/25,
+                        child: ListView(scrollDirection: Axis.horizontal,children: [
+
+                         NewsSearchingPageOvelbuttons(label: 'All', color: Colors.blue,fontcolor: Colors.white,),
+                         NewsSearchingPageOvelbuttons(label: 'Sports', color: Colors.grey.shade200,fontcolor: Colors.grey.shade800,),
+                         NewsSearchingPageOvelbuttons(label: 'Weather', color: Colors.grey.shade200,fontcolor: Colors.grey.shade800,),
+                         NewsSearchingPageOvelbuttons(label: 'Politics', color: Colors.grey.shade200,fontcolor: Colors.grey.shade800,),
+
+                        ],),
                       ),
                     ),
+                      SizedBox(height: 15,),
+
+                    ]),
+                  ),
+
+                  flexibleSpace: FlexibleSpaceBar(
+
+                   // background: ,
                   ),
                 ),
+
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
                         (context, index) {

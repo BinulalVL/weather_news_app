@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class NewsDetailpageDetailbox extends StatelessWidget {
-  const NewsDetailpageDetailbox({super.key,required this.label,required this.icon,required this.data});
+  const NewsDetailpageDetailbox({
+    super.key,
+    required this.label,
+    required this.icon,
+    required this.data,
+  });
   final String label;
   final IconData icon;
   final String data;
@@ -11,17 +16,27 @@ class NewsDetailpageDetailbox extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Container(
-      height: height/20,
-      decoration: BoxDecoration(color: Colors.blue.shade50,borderRadius: BorderRadius.circular(10),),
+      height: (data.length > 15) ? height/16 : height/20,
+      decoration: BoxDecoration(
+        color: Colors.blue.shade50,
+        borderRadius: BorderRadius.circular(10),
+      ),
       child: Padding(
-        padding: const EdgeInsets.all( 8.0),
+        padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
             Padding(
               padding: const EdgeInsets.only(right: 4.0),
-              child: Icon(icon as IconData?,color: Colors.blue,),
+              child: Icon(icon as IconData?, color: Colors.blue),
             ),
-            Text('${label}: ${data}',style: TextStyle(fontSize: 12),),
+            Container(
+              width: width/3,
+              child: Text(
+                '${label}: ${data}',
+                maxLines: (data.length > 15) ? 2 : 1,
+                style: TextStyle(fontSize: 12),
+              ),
+            ),
           ],
         ),
       ),

@@ -42,7 +42,7 @@ class HomepageWeatherDetails extends StatelessWidget {
                     Text(
                       '${temperature}°',
                       style: TextStyle(
-                        fontSize: 44,
+                        fontSize: 55,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
